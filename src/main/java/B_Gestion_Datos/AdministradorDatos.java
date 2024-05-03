@@ -10,3 +10,10 @@ public class AdministradorDatos {
             return (Experimento) ois.readObject();
         }
     }
+
+    public static void guardarExperimento(Experimento experimento, File archivo) throws IOException {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(archivo))) {
+            oos.writeObject(experimento);
+        }
+    }
+}
