@@ -19,3 +19,21 @@ public class VentanaPrincipal extends JFrame {
         JMenuItem itemAbrir = new JMenuItem("Abrir Experimento");
         JMenuItem itemGuardar = new JMenuItem("Guardar");
         JMenuItem itemSalir = new JMenuItem("Salir");
+
+        itemSalir.addActionListener(e -> System.exit(0));
+        menuArchivo.add(itemNuevo);
+        menuArchivo.add(itemAbrir);
+        menuArchivo.add(itemGuardar);
+        menuArchivo.add(new JSeparator());
+        menuArchivo.add(itemSalir);
+        menuBar.add(menuArchivo);
+        setJMenuBar(menuBar);
+
+        // Panel de visualización (Aquí podrías añadir pestañas o paneles según necesidad)
+        JPanel panelCentral = new JPanel();
+        panelCentral.setLayout(new BorderLayout());
+        JLabel labelBienvenida = new JLabel("Bienvenido al Sistema de Gestión de Experimentos", SwingConstants.CENTER);
+        panelCentral.add(labelBienvenida, BorderLayout.CENTER);
+        add(panelCentral);
+    }
+}
