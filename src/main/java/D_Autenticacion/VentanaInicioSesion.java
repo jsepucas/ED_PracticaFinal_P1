@@ -27,3 +27,9 @@ public class VentanaInicioSesion extends JFrame implements ActionListener {
         panel.add(new JLabel("Contraseña:"));
         passwordField = new JPasswordField();
         panel.add(passwordField);
+
+        botonIniciarSesion = new JButton("Iniciar Sesión");
+        botonIniciarSesion.addActionListener(this);
+        this.add(botonIniciarSesion, BorderLayout.SOUTH);
+    }
+
