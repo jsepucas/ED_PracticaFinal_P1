@@ -19,3 +19,11 @@ public class VentanaInicioSesion extends JFrame implements ActionListener {
 
         JPanel panel = new JPanel(new GridLayout(2, 2));
         this.add(panel, BorderLayout.CENTER);
+
+        panel.add(new JLabel("Usuario:"));
+        textFieldUsuario = new JTextField();
+        panel.add(textFieldUsuario);
+
+        panel.add(new JLabel("Contraseña:"));
+        passwordField = new JPasswordField();
+        panel.add(passwordField);
