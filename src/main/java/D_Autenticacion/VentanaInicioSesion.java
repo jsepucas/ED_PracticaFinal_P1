@@ -9,3 +9,13 @@ public class VentanaInicioSesion extends JFrame implements ActionListener {
     private JTextField textFieldUsuario;
     private JPasswordField passwordField;
     private JButton botonIniciarSesion;
+
+    public VentanaInicioSesion() {
+        super("Inicio de Sesión");
+        this.setLayout(new BorderLayout());
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(300, 120);
+        this.setLocationRelativeTo(null); // Centrar en pantalla
+
+        JPanel panel = new JPanel(new GridLayout(2, 2));
+        this.add(panel, BorderLayout.CENTER);
