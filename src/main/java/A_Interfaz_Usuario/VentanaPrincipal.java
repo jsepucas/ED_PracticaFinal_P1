@@ -29,7 +29,8 @@ public class VentanaPrincipal extends JFrame {
         menuBar.add(menuArchivo);
         setJMenuBar(menuBar);
 
-        // Panel de visualización (Aquí podrías añadir pestañas o paneles según necesidad)
+        // Panel de visualización
+
         JPanel panelCentral = new JPanel();
         panelCentral.setLayout(new BorderLayout());
         JLabel labelBienvenida = new JLabel("Bienvenido al Sistema de Gestión de Experimentos", SwingConstants.CENTER);
