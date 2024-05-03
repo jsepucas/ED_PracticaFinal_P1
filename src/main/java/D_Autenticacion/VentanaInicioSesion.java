@@ -37,7 +37,8 @@ public class VentanaInicioSesion extends JFrame implements ActionListener {
         char[] contraseña = passwordField.getPassword();
         if (GestorAutenticacion.autenticar(usuario, new String(contraseña))) {
             this.dispose(); // Cierra la ventana de inicio de sesión
-            // Aquí iría la lógica para abrir la ventana principal
+
+            // Abre la ventana principal
         } else {
             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
         }
