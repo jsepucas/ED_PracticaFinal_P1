@@ -1,25 +1,14 @@
 package B_Gestion_Datos;
 
-import java.io.Serializable;
+import java.util.Date;
 
-public class Experimento implements Serializable {
+public class Experimento {
     private String nombre;
-    // Otros atributos según necesidad
+    private String bacteria;
+    private Date fechaInicio;
+    private Date fechaFin;
+    private int numeroInicialBacterias;
+    private double temperatura;
+    private String condicionLuz;
+    private double dosisComida;
 
-    // Constructor que acepta el nombre del experimento
-    public Experimento(String nombre) {
-        this.nombre = nombre;
-    }
-
-    // Método getter para el nombre
-    public String getNombre() {
-        return nombre;
-    }
-
-    // Método setter para el nombre
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    // Otros métodos y lógica según necesidad
-}
