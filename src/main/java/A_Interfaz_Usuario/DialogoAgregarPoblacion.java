@@ -16,3 +16,14 @@ public class DialogoAgregarPoblacion extends JDialog {
         add(new JLabel("Nombre de la Población:"));
         nombrePoblacionField = new JTextField();
         add(nombrePoblacionField);
+
+        guardarBtn = new JButton("Guardar");
+        guardarBtn.addActionListener(e -> guardarPoblacion());
+        cancelarBtn = new JButton("Cancelar");
+        cancelarBtn.addActionListener(e -> setVisible(false));
+
+        add(guardarBtn);
+        add(cancelarBtn);
+
+        setLocationRelativeTo(owner);
+    }
