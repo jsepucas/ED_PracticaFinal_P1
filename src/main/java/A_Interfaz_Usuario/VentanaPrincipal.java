@@ -17,6 +17,8 @@ public class VentanaPrincipal extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         initUI();
+
+
     }
 
     private void initUI() {
@@ -27,11 +29,15 @@ public class VentanaPrincipal extends JFrame {
         JMenuItem itemAbrir = new JMenuItem("Abrir Experimento");
         JMenuItem itemGuardar = new JMenuItem("Guardar");
         JMenuItem itemSalir = new JMenuItem("Salir");
+        JMenuItem itemEditar = new JMenuItem("Editar Experimento");
+        JMenuItem itemEliminar = new JMenuItem("Eliminar Experimento");
 
         itemNuevo.addActionListener(e -> crearNuevoExperimento());
         itemAbrir.addActionListener(e -> abrirExperimento());
         itemGuardar.addActionListener(e -> guardarExperimento());
         itemSalir.addActionListener(e -> System.exit(0));
+        itemEditar.addActionListener(e -> editarExperimento());
+        itemEliminar.addActionListener(e -> eliminarExperimento());
 
         menuArchivo.add(itemNuevo);
         menuArchivo.add(itemAbrir);
@@ -39,6 +45,8 @@ public class VentanaPrincipal extends JFrame {
         menuArchivo.add(new JSeparator());
         menuArchivo.add(itemSalir);
         menuBar.add(menuArchivo);
+        menuArchivo.add(itemEditar);
+        menuArchivo.add(itemEliminar);
         setJMenuBar(menuBar);
 
         // Panel de visualización
@@ -48,6 +56,22 @@ public class VentanaPrincipal extends JFrame {
         panelCentral.add(labelBienvenida, BorderLayout.CENTER);
         add(panelCentral);
     }
+
+    private void eliminarExperimento() {
+
+        if (experimentoActual != null) {
+            int confirm = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas eliminar este experimento?", "Eliminar Experimento", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                // Aquí podría ir la lógica para eliminar realmente el experimento de la base de datos o de donde se almacenen
+                experimentoActual = null;
+                actualizarUI();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay experimento seleccionado para eliminar", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+
 
     public void setExperimentoActual(Experimento experimento) {
         this.experimentoActual = experimento;
