@@ -22,15 +22,18 @@ public class VentanaPrincipal extends JFrame {
     private void initUI() {
         // Menú principal
         JMenuBar menuBar = new JMenuBar();
+
+        // Icono de menú
         JMenu menuIcono = new JMenu();
-        URL imageUrl = getClass().getResource("/images/icono.png");
-        if (imageUrl != null) {
-            ImageIcon imageIcon = new ImageIcon(new ImageIcon(imageUrl).getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH));
-            menuIcono.setIcon(imageIcon);
+        URL menuIconUrl = getClass().getResource("/images/icono.png");
+        if (menuIconUrl != null) {
+            ImageIcon menuIcon = new ImageIcon(new ImageIcon(menuIconUrl).getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH));
+            menuIcono.setIcon(menuIcon);
         } else {
-            System.out.println("Image not found");
+            System.out.println("Menu icon not found");
         }
 
+        // Menú Items
         JMenuItem itemArchivo = new JMenuItem("Archivo");
         JMenuItem itemNuevo = new JMenuItem("Nuevo Experimento");
         JMenuItem itemAbrir = new JMenuItem("Abrir Experimento");
@@ -39,6 +42,7 @@ public class VentanaPrincipal extends JFrame {
         JMenuItem itemEditar = new JMenuItem("Editar Experimento");
         JMenuItem itemEliminar = new JMenuItem("Eliminar Experimento");
 
+        // Add action listeners for menu items
         itemNuevo.addActionListener(e -> crearNuevoExperimento());
         itemAbrir.addActionListener(e -> abrirExperimento());
         itemGuardar.addActionListener(e -> guardarExperimento());
@@ -46,6 +50,7 @@ public class VentanaPrincipal extends JFrame {
         itemEditar.addActionListener(e -> editarExperimento());
         itemEliminar.addActionListener(e -> eliminarExperimento());
 
+        // Add items to menu
         menuIcono.add(itemArchivo);
         menuIcono.add(itemNuevo);
         menuIcono.add(itemAbrir);
@@ -57,7 +62,20 @@ public class VentanaPrincipal extends JFrame {
 
         menuBar.add(menuIcono);
 
-        // Agregar el JMenu al menuBar
+        // Icono de salida en la parte superior derecha
+        URL exitIconUrl = getClass().getResource("/images/exiticon.png");
+        if (exitIconUrl != null) {
+            ImageIcon exitIcon = new ImageIcon(new ImageIcon(exitIconUrl).getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH));
+            JMenuItem exitItem = new JMenuItem(exitIcon);
+            exitItem.setPreferredSize(new Dimension(30, 25)); // Establecer el tamaño preferido
+            exitItem.setHorizontalAlignment(SwingConstants.RIGHT); // Alinear el icono a la derecha
+            exitItem.addActionListener(e -> System.exit(0));
+            menuBar.add(Box.createHorizontalGlue());
+            menuBar.add(exitItem);
+        } else {
+            System.out.println("Exit icon not found");
+        }
+
         setJMenuBar(menuBar);
 
         // Panel de visualización
@@ -123,6 +141,11 @@ public class VentanaPrincipal extends JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "No hay experimento seleccionado para editar", "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    public void setExperimentoActual(Experimento experimento) {
+        this.experimentoActual = experimento;
+        actualizarUI();  // Actualiza la UI para reflejar el nuevo experimento
     }
 
     private void actualizarUI() {
