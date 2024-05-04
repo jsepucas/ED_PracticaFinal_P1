@@ -16,10 +16,9 @@ public class Experimento {
     private List<PoblacionBacterias> poblaciones;
 
     public Experimento() {
-        this.poblaciones = new ArrayList<>();
+        poblaciones = new ArrayList<>();
     }
 
-    // Getters y Setters
     public String getNombre() {
         return nombre;
     }
@@ -89,6 +88,6 @@ public class Experimento {
     }
 
     public void addPoblacion(PoblacionBacterias poblacion) {
-        this.poblaciones.add(poblacion);
+        poblaciones.add(poblacion);
     }
 }
