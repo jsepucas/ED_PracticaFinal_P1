@@ -2,7 +2,7 @@
 
 Link ---> https://github.com/jsepucas/ED_PracticaFinal_P1.git
 
-#### La entrega de esta práctica incluye los archivos tanto en formato .zip como en .jar. El archivo .zip también contiene una copia del archivo .jar.
+#### El archivo .jar se encuentra dentro del archivo .zip proporcionado para esta entrega.
 
 
 # Aplicación para gestionar cultivos de bacterias
