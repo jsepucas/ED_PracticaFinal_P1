@@ -6,13 +6,32 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class DialogoCrearExperimento extends JDialog {
+    private JTextField nombreField;
+    private JTextField bacteriaField;
+    private JTextField fechaInicioField;
+    private JTextField fechaFinField;
+    private JTextField numeroInicialBacteriasField;
+    private JTextField temperaturaField;
+    private JTextField condicionLuzField;
+    private JTextField dosisComidaField;
     private JTextField nombreExperimentoField;
     private JButton guardarBtn, cancelarBtn;
-    private Experimento experimentoActual; // Almacena el experimento actual si está editando
+    private Experimento experimentoActual;
 
     // Constructor para crear un nuevo experimento
     public DialogoCrearExperimento(JFrame owner) {
         this(owner, null); // Llama al constructor sobrecargado con 'null' para el experimento
+
+        nombreField = new JTextField(20);
+        bacteriaField = new JTextField(20);
+        fechaInicioField = new JTextField(20);
+        fechaFinField = new JTextField(20);
+        numeroInicialBacteriasField = new JTextField(20);
+        temperaturaField = new JTextField(20);
+        condicionLuzField = new JTextField(20);
+        dosisComidaField = new JTextField(20);
+
+
     }
 
     // Constructor sobrecargado para editar un experimento existente
@@ -59,5 +78,3 @@ public class DialogoCrearExperimento extends JDialog {
         }
     }
 }
-
-
