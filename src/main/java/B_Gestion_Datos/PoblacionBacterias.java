@@ -7,7 +7,7 @@ public class PoblacionBacterias {
     private int diaIncremento;
     private int comidaIncremento;
 
-    public PoblacionBacterias(String nombrePoblacion, int comidaInicial, int comidaFinal, int diaIncremento, int comidaIncremento) {
+    public PoblacionBacterias(String nombrePoblacion) {
         this.nombrePoblacion = nombrePoblacion;
         this.comidaInicial = comidaInicial;
         this.comidaFinal = comidaFinal;
