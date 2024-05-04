@@ -4,7 +4,6 @@ import B_Gestion_Datos.Experimento;
 import javax.swing.*;
 import java.awt.*;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class DialogoCrearExperimento extends JDialog {
     private JTextField nombreField, bacteriaField, numeroInicialBacteriasField, temperaturaField, condicionLuzField, dosisComidaField;
