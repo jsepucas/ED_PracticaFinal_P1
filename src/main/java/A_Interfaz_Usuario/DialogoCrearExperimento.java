@@ -33,8 +33,7 @@ public class DialogoCrearExperimento extends JDialog {
         String nombreExperimento = nombreExperimentoField.getText();
         if (!nombreExperimento.isEmpty()) {
             Experimento nuevoExperimento = new Experimento(nombreExperimento);
-            VentanaPrincipal ventanaPrincipal = (VentanaPrincipal) getOwner();
-            ventanaPrincipal.setExperimentoActual(nuevoExperimento);
+            ((VentanaPrincipal) getOwner()).setExperimentoActual(nuevoExperimento);
             setVisible(false);
         } else {
             JOptionPane.showMessageDialog(this, "El nombre del experimento no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
