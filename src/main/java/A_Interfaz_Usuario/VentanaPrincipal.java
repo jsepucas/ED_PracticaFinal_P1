@@ -32,7 +32,7 @@ public class VentanaPrincipal extends JFrame {
 
         URL imageUrl = getClass().getResource("/images/icono.png");
         if (imageUrl != null) {
-            ImageIcon imageIcon = new ImageIcon(new ImageIcon(imageUrl).getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH));
+            ImageIcon imageIcon = new ImageIcon(new ImageIcon(imageUrl).getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH));
             menuIcono.setIcon(imageIcon);
             menuIcono.revalidate();
             menuIcono.repaint();
@@ -71,17 +71,23 @@ public class VentanaPrincipal extends JFrame {
         menuBar.add(menuIcono);
         setJMenuBar(menuBar);
 
+
         URL exitIconUrl = getClass().getResource("/images/exiticon.png");
         if (exitIconUrl != null) {
-            ImageIcon exitIcon = new ImageIcon(new ImageIcon(exitIconUrl).getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH));
+            ImageIcon exitIcon = new ImageIcon(new ImageIcon(exitIconUrl).getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH));
             JMenuItem exitItem = new JMenuItem(exitIcon);
 
             // Add an ActionListener to the JMenuItem
             exitItem.addActionListener(e -> System.exit(0));
 
-            // Add the JMenuItem to the right of the JMenuBar
+            // Create a JPanel and add the JMenuItem to it
+            JPanel exitPanel = new JPanel();
+            exitPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+            exitPanel.add(exitItem);
+
+            // Add the JPanel to the right of the JMenuBar
             menuBar.add(Box.createHorizontalGlue());
-            menuBar.add(exitItem);
+            menuBar.add(exitPanel);
         } else {
             System.out.println("Exit icon not found");
         }
