@@ -1,15 +1,17 @@
 package A_Interfaz_Usuario;
 
+import B_Gestion_Datos.Experimento;
+import B_Gestion_Datos.PoblacionBacterias;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 public class DialogoAgregarPoblacion extends JDialog {
     private JTextField nombrePoblacionField;
-    private JButton guardarBtn, cancelarBtn;
+    private Experimento experimento;
 
-    public DialogoAgregarPoblacion(JFrame owner) {
+    public DialogoAgregarPoblacion(JFrame owner, Experimento experimento) {
         super(owner, "Agregar Población de Bacterias", true);
+        this.experimento = experimento;
         setSize(300, 200);
         setLayout(new GridLayout(0, 2));
 
@@ -17,9 +19,9 @@ public class DialogoAgregarPoblacion extends JDialog {
         nombrePoblacionField = new JTextField();
         add(nombrePoblacionField);
 
-        guardarBtn = new JButton("Guardar");
+        JButton guardarBtn = new JButton("Guardar");
         guardarBtn.addActionListener(e -> guardarPoblacion());
-        cancelarBtn = new JButton("Cancelar");
+        JButton cancelarBtn = new JButton("Cancelar");
         cancelarBtn.addActionListener(e -> setVisible(false));
 
         add(guardarBtn);
@@ -30,8 +32,8 @@ public class DialogoAgregarPoblacion extends JDialog {
 
     private void guardarPoblacion() {
         String nombrePoblacion = nombrePoblacionField.getText();
-        // Aquí implementar la lógica para añadir una nueva población
-        // Ejemplo: controller.añadirPoblacion(nombrePoblacion);
+        PoblacionBacterias nuevaPoblacion = new PoblacionBacterias(nombrePoblacion);
+        experimento.addPoblacion(nuevaPoblacion);
         setVisible(false);
     }
 }
