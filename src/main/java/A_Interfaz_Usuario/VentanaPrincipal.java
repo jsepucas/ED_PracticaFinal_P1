@@ -138,7 +138,7 @@ public class VentanaPrincipal extends JFrame {
     }
 
     private void crearNuevoExperimento() {
-        DialogoCrearExperimento dialogo = new DialogoCrearExperimento(this);
+        DialogoCrearExperimento dialogo = new DialogoCrearExperimento(this, experimentoActual);
         dialogo.setVisible(true);
     }
 
