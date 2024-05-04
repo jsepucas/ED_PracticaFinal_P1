@@ -10,6 +10,7 @@ import java.net.URL;
 public class VentanaPrincipal extends JFrame {
     private Experimento experimentoActual; // Mantiene el experimento actual
     private JLabel labelBienvenida;
+    private JLabel labelNombre, labelBacteria, labelNumeroInicialBacterias, labelTemperatura, labelCondicionLuz, labelDosisComida;
 
     public VentanaPrincipal() {
         setTitle("Sistema de Gestión de Experimentos");
@@ -75,9 +76,21 @@ public class VentanaPrincipal extends JFrame {
         setJMenuBar(menuBar);
 
         // Panel de visualización
-        JPanel panelCentral = new JPanel(new BorderLayout());
+        JPanel panelCentral = new JPanel(new GridLayout(7, 2));
         labelBienvenida = new JLabel("Bienvenido al Sistema de Gestión de Experimentos de la UAX", SwingConstants.CENTER);
-        panelCentral.add(labelBienvenida, BorderLayout.CENTER);
+        panelCentral.add(labelBienvenida);
+        labelNombre = new JLabel();
+        panelCentral.add(labelNombre);
+        labelBacteria = new JLabel();
+        panelCentral.add(labelBacteria);
+        labelNumeroInicialBacterias = new JLabel();
+        panelCentral.add(labelNumeroInicialBacterias);
+        labelTemperatura = new JLabel();
+        panelCentral.add(labelTemperatura);
+        labelCondicionLuz = new JLabel();
+        panelCentral.add(labelCondicionLuz);
+        labelDosisComida = new JLabel();
+        panelCentral.add(labelDosisComida);
         add(panelCentral);
     }
 
@@ -85,10 +98,13 @@ public class VentanaPrincipal extends JFrame {
         this.experimentoActual = experimento;
         actualizarUI();
     }
-
     private void crearNuevoExperimento() {
         DialogoCrearExperimento dialogo = new DialogoCrearExperimento(this);
         dialogo.setVisible(true);
+        if (experimentoActual != null) {
+            VentanaDetallesExperimento ventanaDetalles = new VentanaDetallesExperimento(experimentoActual);
+            ventanaDetalles.setVisible(true);
+        }
     }
 
     private void abrirExperimento() {
@@ -146,8 +162,21 @@ public class VentanaPrincipal extends JFrame {
     private void actualizarUI() {
         if (experimentoActual != null) {
             labelBienvenida.setText("Experimento cargado: " + experimentoActual.getNombre());
+            labelNombre.setText("Nombre del experimento: " + experimentoActual.getNombre());
+            labelBacteria.setText("Nombre de la bacteria: " + experimentoActual.getBacteria());
+            labelNumeroInicialBacterias.setText("Número inicial de bacterias: " + experimentoActual.getNumeroInicialBacterias());
+            labelTemperatura.setText("Temperatura: " + experimentoActual.getTemperatura());
+            labelCondicionLuz.setText("Condición de luz: " + experimentoActual.getCondicionLuz());
+            labelDosisComida.setText("Dosis de comida: " + experimentoActual.getDosisComida());
         } else {
             labelBienvenida.setText("Bienvenido al Sistema de Gestión de Experimentos de la UAX");
+            labelNombre.setText("");
+            labelBacteria.setText("");
+            labelNumeroInicialBacterias.setText("");
+            labelTemperatura.setText("");
+            labelCondicionLuz.setText("");
+            labelDosisComida.setText("");
         }
     }
+
 }
