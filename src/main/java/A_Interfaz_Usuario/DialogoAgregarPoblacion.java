@@ -27,3 +27,11 @@ public class DialogoAgregarPoblacion extends JDialog {
 
         setLocationRelativeTo(owner);
     }
+
+    private void guardarPoblacion() {
+        String nombrePoblacion = nombrePoblacionField.getText();
+        // Aquí implementar la lógica para añadir una nueva población
+        // Ejemplo: controller.añadirPoblacion(nombrePoblacion);
+        setVisible(false);
+    }
+}
