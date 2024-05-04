@@ -44,4 +44,20 @@ public class DialogoCrearExperimento extends JDialog {
         setLocationRelativeTo(getOwner());
     }
 
+    private void guardarExperimento() {
+        String nombreExperimento = nombreExperimentoField.getText().trim();
+        if (!nombreExperimento.isEmpty()) {
+            if (experimentoActual == null) {
+                experimentoActual = new Experimento(nombreExperimento); // Crear nuevo si no estaba editando
+            } else {
+                experimentoActual.setNombre(nombreExperimento); // Actualizar nombre si estaba editando
+            }
+            ((VentanaPrincipal) getOwner()).setExperimentoActual(experimentoActual);
+            setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(this, "El nombre del experimento no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+}
+
 
