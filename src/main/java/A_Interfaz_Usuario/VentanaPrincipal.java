@@ -17,31 +17,20 @@ public class VentanaPrincipal extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         initUI();
-
-
     }
 
     private void initUI() {
         // Menú principal
         JMenuBar menuBar = new JMenuBar();
-
-        // Crear un JMenu con un icono
         JMenu menuIcono = new JMenu();
-        menuIcono.setIcon(new ImageIcon(getClass().getResource("/images/icono.png")));
-
-
         URL imageUrl = getClass().getResource("/images/icono.png");
         if (imageUrl != null) {
             ImageIcon imageIcon = new ImageIcon(new ImageIcon(imageUrl).getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH));
             menuIcono.setIcon(imageIcon);
-            menuIcono.revalidate();
-            menuIcono.repaint();
         } else {
             System.out.println("Image not found");
         }
 
-
-        // Crear los JMenuItem para el menú desplegable
         JMenuItem itemArchivo = new JMenuItem("Archivo");
         JMenuItem itemNuevo = new JMenuItem("Nuevo Experimento");
         JMenuItem itemAbrir = new JMenuItem("Abrir Experimento");
@@ -57,7 +46,6 @@ public class VentanaPrincipal extends JFrame {
         itemEditar.addActionListener(e -> editarExperimento());
         itemEliminar.addActionListener(e -> eliminarExperimento());
 
-        // Agregar los JMenuItem al JMenu
         menuIcono.add(itemArchivo);
         menuIcono.add(itemNuevo);
         menuIcono.add(itemAbrir);
@@ -67,31 +55,10 @@ public class VentanaPrincipal extends JFrame {
         menuIcono.add(new JSeparator());
         menuIcono.add(itemSalir);
 
-        // Agregar el JMenu al menuBar
         menuBar.add(menuIcono);
+
+        // Agregar el JMenu al menuBar
         setJMenuBar(menuBar);
-
-
-        URL exitIconUrl = getClass().getResource("/images/exiticon.png");
-        if (exitIconUrl != null) {
-            ImageIcon exitIcon = new ImageIcon(new ImageIcon(exitIconUrl).getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH));
-            JMenuItem exitItem = new JMenuItem(exitIcon);
-
-            // Add an ActionListener to the JMenuItem
-            exitItem.addActionListener(e -> System.exit(0));
-
-            // Create a JPanel and add the JMenuItem to it
-            JPanel exitPanel = new JPanel();
-            exitPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-            exitPanel.add(exitItem);
-
-            // Add the JPanel to the right of the JMenuBar
-            menuBar.add(Box.createHorizontalGlue());
-            menuBar.add(exitPanel);
-        } else {
-            System.out.println("Exit icon not found");
-        }
-
 
         // Panel de visualización
         JPanel panelCentral = new JPanel();
@@ -100,45 +67,9 @@ public class VentanaPrincipal extends JFrame {
         panelCentral.add(labelBienvenida, BorderLayout.CENTER);
         add(panelCentral);
     }
-    private void eliminarExperimento() {
-
-        if (experimentoActual != null) {
-            int confirm = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas eliminar este experimento?", "Eliminar Experimento", JOptionPane.YES_NO_OPTION);
-            if (confirm == JOptionPane.YES_OPTION) {
-                // Aquí podría ir la lógica para eliminar realmente el experimento de la base de datos o de donde se almacenen
-                experimentoActual = null;
-                actualizarUI();
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "No hay experimento seleccionado para eliminar", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    private void editarExperimento() {
-
-        if (experimentoActual != null) {
-            DialogoCrearExperimento dialogo = new DialogoCrearExperimento(this, experimentoActual); // Suponiendo que DialogoCrearExperimento puede también manejar ediciones
-            dialogo.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(this, "No hay experimento seleccionado para editar", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    public void setExperimentoActual(Experimento experimento) {
-        this.experimentoActual = experimento;
-        actualizarUI();
-    }
-
-    private void actualizarUI() {
-        if (experimentoActual != null) {
-            labelBienvenida.setText("Experimento cargado: " + experimentoActual.getNombre());
-        } else {
-            labelBienvenida.setText("Bienvenido al Sistema de Gestión de Experimentos de la UAX");
-        }
-    }
 
     private void crearNuevoExperimento() {
-        DialogoCrearExperimento dialogo = new DialogoCrearExperimento(this, experimentoActual);
+        DialogoCrearExperimento dialogo = new DialogoCrearExperimento(this, null);
         dialogo.setVisible(true);
     }
 
@@ -170,6 +101,35 @@ public class VentanaPrincipal extends JFrame {
             }
         } else {
             JOptionPane.showMessageDialog(this, "No hay experimento para guardar", "Error", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    private void eliminarExperimento() {
+        if (experimentoActual != null) {
+            int confirm = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas eliminar este experimento?", "Eliminar Experimento", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                experimentoActual = null;
+                actualizarUI();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay experimento seleccionado para eliminar", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void editarExperimento() {
+        if (experimentoActual != null) {
+            DialogoCrearExperimento dialogo = new DialogoCrearExperimento(this, experimentoActual);
+            dialogo.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay experimento seleccionado para editar", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void actualizarUI() {
+        if (experimentoActual != null) {
+            labelBienvenida.setText("Experimento cargado: " + experimentoActual.getNombre());
+        } else {
+            labelBienvenida.setText("Bienvenido al Sistema de Gestión de Experimentos de la UAX");
         }
     }
 }
