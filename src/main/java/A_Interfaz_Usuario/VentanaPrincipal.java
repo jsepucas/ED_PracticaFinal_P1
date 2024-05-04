@@ -1,7 +1,13 @@
 package A_Interfaz_Usuario;
 
+import B_Gestion_Datos.AdministradorDatos;
+import B_Gestion_Datos.Experimento;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+
+
 public class VentanaPrincipal extends JFrame {
     public VentanaPrincipal() {
         setTitle("Sistema de Gestión de Experimentos");
@@ -20,6 +26,8 @@ public class VentanaPrincipal extends JFrame {
         JMenuItem itemGuardar = new JMenuItem("Guardar");
         JMenuItem itemSalir = new JMenuItem("Salir");
 
+
+
         itemSalir.addActionListener(e -> System.exit(0));
         menuArchivo.add(itemNuevo);
         menuArchivo.add(itemAbrir);
@@ -33,7 +41,7 @@ public class VentanaPrincipal extends JFrame {
 
         JPanel panelCentral = new JPanel();
         panelCentral.setLayout(new BorderLayout());
-        JLabel labelBienvenida = new JLabel("Bienvenido al Sistema de Gestión de Experimentos", SwingConstants.CENTER);
+        JLabel labelBienvenida = new JLabel("Bienvenido al Sistema de Gestión de Experimentos de la UAX", SwingConstants.CENTER);
         panelCentral.add(labelBienvenida, BorderLayout.CENTER);
         add(panelCentral);
     }
