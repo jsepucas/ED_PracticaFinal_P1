@@ -1,7 +1,11 @@
 package A_Interfaz_Usuario;
 
+import A_Interfaz_Usuario.VentanaDetallesPoblacion;
 import B_Gestion_Datos.AdministradorDatos;
 import B_Gestion_Datos.Experimento;
+import B_Gestion_Datos.PoblacionBacterias;
+import E_App.ImagePanel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
@@ -13,11 +17,13 @@ public class VentanaPrincipal extends JFrame {
     private JLabel labelNombre, labelBacteria, labelNumeroInicialBacterias, labelTemperatura, labelCondicionLuz, labelDosisComida;
 
     public VentanaPrincipal() {
-        setTitle("Sistema de Gestión de Experimentos");
+        setTitle("Sistema de Gestión de Experimentos de la UAX");
         setSize(1200, 800);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         initUI();
+
+
     }
 
     private void initUI() {
@@ -42,6 +48,7 @@ public class VentanaPrincipal extends JFrame {
         JMenuItem itemSalir = new JMenuItem("Salir");
         JMenuItem itemEditar = new JMenuItem("Editar Experimento");
         JMenuItem itemEliminar = new JMenuItem("Eliminar Experimento");
+        JMenuItem itemVerDetallesPoblacion = new JMenuItem("Ver Detalles de la Población"); // Nuevo ítem de menú
 
         itemNuevo.addActionListener(e -> crearNuevoExperimento());
         itemAbrir.addActionListener(e -> abrirExperimento());
@@ -49,6 +56,7 @@ public class VentanaPrincipal extends JFrame {
         itemSalir.addActionListener(e -> System.exit(0));
         itemEditar.addActionListener(e -> editarExperimento());
         itemEliminar.addActionListener(e -> eliminarExperimento());
+        itemVerDetallesPoblacion.addActionListener(e -> verDetallesPoblacion()); // Acción para el nuevo ítem de menú
 
         menuIcono.add(itemArchivo);
         menuIcono.add(itemNuevo);
@@ -56,9 +64,9 @@ public class VentanaPrincipal extends JFrame {
         menuIcono.add(itemGuardar);
         menuIcono.add(itemEditar);
         menuIcono.add(itemEliminar);
+        menuIcono.add(itemVerDetallesPoblacion); // Añadir el nuevo ítem de menú
         menuIcono.add(new JSeparator());
         menuIcono.add(itemSalir);
-
         menuBar.add(menuIcono);
 
         // Icono de salida en la parte superior derecha
@@ -76,7 +84,15 @@ public class VentanaPrincipal extends JFrame {
         setJMenuBar(menuBar);
 
         // Panel de visualización
-        JPanel panelCentral = new JPanel(new GridLayout(7, 2));
+
+        JPanel panelCentral =  new JPanel(new GridLayout(7, 2));
+
+        ImagePanel panelConImagen = new ImagePanel("/images/fondo4.jpg");
+        panelConImagen.setLayout(new GridLayout(7, 2)); // Asegúrate de establecer el mismo layout que panelCentral
+        panelCentral = panelConImagen;
+
+
+
         labelBienvenida = new JLabel("Bienvenido al Sistema de Gestión de Experimentos de la UAX", SwingConstants.CENTER);
         panelCentral.add(labelBienvenida);
         labelNombre = new JLabel();
@@ -91,6 +107,7 @@ public class VentanaPrincipal extends JFrame {
         panelCentral.add(labelCondicionLuz);
         labelDosisComida = new JLabel();
         panelCentral.add(labelDosisComida);
+
         add(panelCentral);
     }
 
@@ -179,4 +196,14 @@ public class VentanaPrincipal extends JFrame {
         }
     }
 
+    private void verDetallesPoblacion() {
+
+        if (experimentoActual != null && !experimentoActual.getPoblaciones().isEmpty()) {
+            PoblacionBacterias poblacion = experimentoActual.getPoblaciones().get(0);
+            VentanaDetallesPoblacion ventanaDetallesPoblacion = new VentanaDetallesPoblacion(poblacion);
+            ventanaDetallesPoblacion.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay población de bacterias para mostrar", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 }
