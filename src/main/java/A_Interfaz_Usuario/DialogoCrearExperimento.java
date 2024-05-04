@@ -4,13 +4,14 @@ import B_Gestion_Datos.Experimento;
 import javax.swing.*;
 import java.awt.*;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DialogoCrearExperimento extends JDialog {
     private JTextField nombreField, bacteriaField, numeroInicialBacteriasField, temperaturaField, condicionLuzField, dosisComidaField;
     private JFormattedTextField fechaInicioField, fechaFinField;
     private JButton crearButton;
 
-    public DialogoCrearExperimento(JFrame parent, Experimento experimentoActual) {
+    public DialogoCrearExperimento(JFrame parent) {
         super(parent, "Crear Nuevo Experimento", true);
         setSize(400, 400);
         setLayout(new BorderLayout());
@@ -66,8 +67,6 @@ public class DialogoCrearExperimento extends JDialog {
             experimento.setCondicionLuz(condicionLuzField.getText());
             experimento.setDosisComida(Double.parseDouble(dosisComidaField.getText()));
 
-            // Lógica para guardar el experimento, dependiendo del diseño del resto de tu aplicación
-            // Por ejemplo, puedes llamar a una función en VentanaPrincipal para manejar el experimento
             ((VentanaPrincipal) getParent()).setExperimentoActual(experimento);
             dispose();
         } catch (Exception ex) {
