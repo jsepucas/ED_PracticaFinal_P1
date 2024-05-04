@@ -71,7 +71,16 @@ public class VentanaPrincipal extends JFrame {
         }
     }
 
+    private void editarExperimento() {
 
+        if (experimentoActual != null) {
+            DialogoCrearExperimento dialogo = new DialogoCrearExperimento(this, experimentoActual); // Suponiendo que DialogoCrearExperimento puede también manejar ediciones
+            dialogo.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay experimento seleccionado para editar", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
 
     public void setExperimentoActual(Experimento experimento) {
         this.experimentoActual = experimento;
