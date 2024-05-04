@@ -23,7 +23,7 @@ public class VentanaPrincipal extends JFrame {
         // Menú principal
         JMenuBar menuBar = new JMenuBar();
 
-        // Icono de menú
+        // Icono de menú (usualmente utilizado como menú desplegable)
         JMenu menuIcono = new JMenu();
         URL menuIconUrl = getClass().getResource("/images/icono.png");
         if (menuIconUrl != null) {
@@ -33,7 +33,7 @@ public class VentanaPrincipal extends JFrame {
             System.out.println("Menu icon not found");
         }
 
-        // Menú Items
+        // Ítems de menú
         JMenuItem itemArchivo = new JMenuItem("Archivo");
         JMenuItem itemNuevo = new JMenuItem("Nuevo Experimento");
         JMenuItem itemAbrir = new JMenuItem("Abrir Experimento");
@@ -42,7 +42,6 @@ public class VentanaPrincipal extends JFrame {
         JMenuItem itemEditar = new JMenuItem("Editar Experimento");
         JMenuItem itemEliminar = new JMenuItem("Eliminar Experimento");
 
-        // Add action listeners for menu items
         itemNuevo.addActionListener(e -> crearNuevoExperimento());
         itemAbrir.addActionListener(e -> abrirExperimento());
         itemGuardar.addActionListener(e -> guardarExperimento());
@@ -50,7 +49,6 @@ public class VentanaPrincipal extends JFrame {
         itemEditar.addActionListener(e -> editarExperimento());
         itemEliminar.addActionListener(e -> eliminarExperimento());
 
-        // Add items to menu
         menuIcono.add(itemArchivo);
         menuIcono.add(itemNuevo);
         menuIcono.add(itemAbrir);
@@ -63,12 +61,10 @@ public class VentanaPrincipal extends JFrame {
         menuBar.add(menuIcono);
 
         // Icono de salida en la parte superior derecha
-        URL exitIconUrl = getClass().getResource("/images/exiticon.png");
+        URL exitIconUrl = getClass().getResource("/images/exitIcon.png");
         if (exitIconUrl != null) {
             ImageIcon exitIcon = new ImageIcon(new ImageIcon(exitIconUrl).getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH));
             JMenuItem exitItem = new JMenuItem(exitIcon);
-            exitItem.setPreferredSize(new Dimension(30, 25)); // Establecer el tamaño preferido
-            exitItem.setHorizontalAlignment(SwingConstants.RIGHT); // Alinear el icono a la derecha
             exitItem.addActionListener(e -> System.exit(0));
             menuBar.add(Box.createHorizontalGlue());
             menuBar.add(exitItem);
@@ -79,15 +75,19 @@ public class VentanaPrincipal extends JFrame {
         setJMenuBar(menuBar);
 
         // Panel de visualización
-        JPanel panelCentral = new JPanel();
-        panelCentral.setLayout(new BorderLayout());
+        JPanel panelCentral = new JPanel(new BorderLayout());
         labelBienvenida = new JLabel("Bienvenido al Sistema de Gestión de Experimentos de la UAX", SwingConstants.CENTER);
         panelCentral.add(labelBienvenida, BorderLayout.CENTER);
         add(panelCentral);
     }
 
+    public void setExperimentoActual(Experimento experimento) {
+        this.experimentoActual = experimento;
+        actualizarUI();
+    }
+
     private void crearNuevoExperimento() {
-        DialogoCrearExperimento dialogo = new DialogoCrearExperimento(this, null);
+        DialogoCrearExperimento dialogo = new DialogoCrearExperimento(this);
         dialogo.setVisible(true);
     }
 
@@ -95,9 +95,9 @@ public class VentanaPrincipal extends JFrame {
         JFileChooser fileChooser = new JFileChooser();
         int resultado = fileChooser.showOpenDialog(this);
         if (resultado == JFileChooser.APPROVE_OPTION) {
-            File seleccionado = fileChooser.getSelectedFile();
+            File archivo = fileChooser.getSelectedFile();
             try {
-                experimentoActual = AdministradorDatos.abrirExperimento(seleccionado);
+                experimentoActual = AdministradorDatos.abrirExperimento(archivo);
                 actualizarUI();
             } catch (IOException | ClassNotFoundException ex) {
                 JOptionPane.showMessageDialog(this, "Error al abrir el archivo", "Error", JOptionPane.ERROR_MESSAGE);
@@ -110,9 +110,9 @@ public class VentanaPrincipal extends JFrame {
             JFileChooser fileChooser = new JFileChooser();
             int resultado = fileChooser.showSaveDialog(this);
             if (resultado == JFileChooser.APPROVE_OPTION) {
-                File seleccionado = fileChooser.getSelectedFile();
+                File archivo = fileChooser.getSelectedFile();
                 try {
-                    AdministradorDatos.guardarExperimento(experimentoActual, seleccionado);
+                    AdministradorDatos.guardarExperimento(experimentoActual, archivo);
                 } catch (IOException ex) {
                     JOptionPane.showMessageDialog(this, "Error al guardar el archivo", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -136,16 +136,11 @@ public class VentanaPrincipal extends JFrame {
 
     private void editarExperimento() {
         if (experimentoActual != null) {
-            DialogoCrearExperimento dialogo = new DialogoCrearExperimento(this, experimentoActual);
+            DialogoCrearExperimento dialogo = new DialogoCrearExperimento(this);
             dialogo.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "No hay experimento seleccionado para editar", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }
-
-    public void setExperimentoActual(Experimento experimento) {
-        this.experimentoActual = experimento;
-        actualizarUI();  // Actualiza la UI para reflejar el nuevo experimento
     }
 
     private void actualizarUI() {
