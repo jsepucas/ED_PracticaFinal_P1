@@ -11,6 +11,7 @@ public class Experimento {
     private double temperatura;
     private String condicionLuz;
     private double dosisComida;
+    private int[] dosisDiaria;
 
     // Add getters and setters for the new fields
     public String getNombre() {
@@ -75,5 +76,9 @@ public class Experimento {
 
     public void setDosisComida(double dosisComida) {
         this.dosisComida = dosisComida;
+    }
+
+    public void setDosisDiaria(int[] dosisDiaria) {
+        this.dosisDiaria = dosisDiaria;
     }
 }
