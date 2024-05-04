@@ -1,5 +1,6 @@
 package A_Interfaz_Usuario;
 
+import B_Gestion_Datos.Experimento;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -30,8 +31,13 @@ public class DialogoCrearExperimento extends JDialog {
 
     private void guardarExperimento() {
         String nombreExperimento = nombreExperimentoField.getText();
-        // lógica para crear un nuevo experimento
-        // Ejemplo: controller.crearExperimento(nombreExperimento);
-        setVisible(false);
+        if (!nombreExperimento.isEmpty()) {
+            Experimento nuevoExperimento = new Experimento(nombreExperimento);
+            VentanaPrincipal ventanaPrincipal = (VentanaPrincipal) getOwner();
+            ventanaPrincipal.setExperimentoActual(nuevoExperimento);
+            setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(this, "El nombre del experimento no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
