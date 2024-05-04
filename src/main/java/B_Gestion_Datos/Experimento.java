@@ -12,6 +12,10 @@ public class Experimento {
     private String condicionLuz;
     private double dosisComida;
 
+    public Experimento(String nombreExperimento) {
+        this.nombre = nombreExperimento;
+    }
+
     // Add getters and setters for the new fields
     public String getNombre() {
         return nombre;
