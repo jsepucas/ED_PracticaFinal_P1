@@ -9,6 +9,8 @@ import java.io.*;
 
 
 public class VentanaPrincipal extends JFrame {
+    private Experimento experimentoActual; // Mantiene el experimento actual
+
     public VentanaPrincipal() {
         setTitle("Sistema de Gestión de Experimentos");
         setSize(1200, 800);
@@ -26,9 +28,11 @@ public class VentanaPrincipal extends JFrame {
         JMenuItem itemGuardar = new JMenuItem("Guardar");
         JMenuItem itemSalir = new JMenuItem("Salir");
 
-
-
+        itemNuevo.addActionListener(e -> crearNuevoExperimento());
+        itemAbrir.addActionListener(e -> abrirExperimento());
+        itemGuardar.addActionListener(e -> guardarExperimento());
         itemSalir.addActionListener(e -> System.exit(0));
+
         menuArchivo.add(itemNuevo);
         menuArchivo.add(itemAbrir);
         menuArchivo.add(itemGuardar);
@@ -38,11 +42,48 @@ public class VentanaPrincipal extends JFrame {
         setJMenuBar(menuBar);
 
         // Panel de visualización
-
         JPanel panelCentral = new JPanel();
         panelCentral.setLayout(new BorderLayout());
         JLabel labelBienvenida = new JLabel("Bienvenido al Sistema de Gestión de Experimentos de la UAX", SwingConstants.CENTER);
         panelCentral.add(labelBienvenida, BorderLayout.CENTER);
         add(panelCentral);
+    }
+
+    private void crearNuevoExperimento() {
+        DialogoCrearExperimento dialogo = new DialogoCrearExperimento(this);
+        dialogo.setVisible(true);
+        // Supongamos que DialogoCrearExperimento maneja la creación y configuración del experimento
+        // y se asigna a experimentoActual cuando se guarda exitosamente
+    }
+
+    private void abrirExperimento() {
+        JFileChooser fileChooser = new JFileChooser();
+        int resultado = fileChooser.showOpenDialog(this);
+        if (resultado == JFileChooser.APPROVE_OPTION) {
+            File seleccionado = fileChooser.getSelectedFile();
+            try {
+                experimentoActual = AdministradorDatos.abrirExperimento(seleccionado);
+                // Aquí deberías actualizar la UI con los datos del experimento cargado
+            } catch (IOException | ClassNotFoundException ex) {
+                JOptionPane.showMessageDialog(this, "Error al abrir el archivo", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    private void guardarExperimento() {
+        if (experimentoActual != null) {
+            JFileChooser fileChooser = new JFileChooser();
+            int resultado = fileChooser.showSaveDialog(this);
+            if (resultado == JFileChooser.APPROVE_OPTION) {
+                File seleccionado = fileChooser.getSelectedFile();
+                try {
+                    AdministradorDatos.guardarExperimento(experimentoActual, seleccionado);
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(this, "Error al guardar el archivo", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay experimento para guardar", "Error", JOptionPane.WARNING_MESSAGE);
+        }
     }
 }
