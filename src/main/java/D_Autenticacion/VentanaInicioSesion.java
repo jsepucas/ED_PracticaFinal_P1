@@ -18,7 +18,7 @@ public class VentanaInicioSesion extends JFrame implements ActionListener {
         super("Inicio de Sesión");
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(1100, 600); // Ajusta el tamaño de la ventana
+        this.setSize(1200, 800); // Ajusta el tamaño de la ventana
         this.setLocationRelativeTo(null); // Centra la ventana en pantalla
 
         // Configura el panel principal con una imagen de fondo
@@ -32,6 +32,19 @@ public class VentanaInicioSesion extends JFrame implements ActionListener {
             System.err.println("No se pudo cargar la imagen de fondo");
             // Configura un color de fondo como fallback
             this.getContentPane().setBackground(Color.GRAY);
+        }
+
+        // Añade la imagen en la parte superior derecha
+        URL imagenDerechaUrl = getClass().getResource("/images/Contra.png");
+        if (imagenDerechaUrl != null) {
+            ImageIcon imagenDerecha = new ImageIcon(imagenDerechaUrl);
+            Image imagen = imagenDerecha.getImage();
+            Image imagenRedimensionada = imagen.getScaledInstance(290, 200, java.awt.Image.SCALE_SMOOTH); // Ajusta el tamaño de la imagen
+            imagenDerecha = new ImageIcon(imagenRedimensionada);
+            JLabel labelImagenDerecha = new JLabel(imagenDerecha);
+            this.add(labelImagenDerecha, BorderLayout.PAGE_START);
+        } else {
+            System.err.println("No se pudo cargar la imagen de la derecha");
         }
 
         // Panel de entrada de datos
@@ -88,7 +101,7 @@ public class VentanaInicioSesion extends JFrame implements ActionListener {
 
         // Botón de inicio de sesión
         botonIniciarSesion = new JButton("Iniciar Sesión");
-        botonIniciarSesion.setBackground(new Color(153, 0, 153)); // Color personalizado
+        botonIniciarSesion.setBackground(new Color(8, 112, 243)); // Color personalizado
         botonIniciarSesion.setForeground(Color.WHITE);
         c.gridy++;
         panelCentral.add(botonIniciarSesion, c);
