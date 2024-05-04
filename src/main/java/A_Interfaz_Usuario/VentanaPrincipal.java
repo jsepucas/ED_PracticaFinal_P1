@@ -7,9 +7,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 
-
 public class VentanaPrincipal extends JFrame {
     private Experimento experimentoActual; // Mantiene el experimento actual
+    private JLabel labelBienvenida;
 
     public VentanaPrincipal() {
         setTitle("Sistema de Gestión de Experimentos");
@@ -44,16 +44,27 @@ public class VentanaPrincipal extends JFrame {
         // Panel de visualización
         JPanel panelCentral = new JPanel();
         panelCentral.setLayout(new BorderLayout());
-        JLabel labelBienvenida = new JLabel("Bienvenido al Sistema de Gestión de Experimentos de la UAX", SwingConstants.CENTER);
+        labelBienvenida = new JLabel("Bienvenido al Sistema de Gestión de Experimentos de la UAX", SwingConstants.CENTER);
         panelCentral.add(labelBienvenida, BorderLayout.CENTER);
         add(panelCentral);
+    }
+
+    public void setExperimentoActual(Experimento experimento) {
+        this.experimentoActual = experimento;
+        actualizarUI();
+    }
+
+    private void actualizarUI() {
+        if (experimentoActual != null) {
+            labelBienvenida.setText("Experimento cargado: " + experimentoActual.getNombre());
+        } else {
+            labelBienvenida.setText("Bienvenido al Sistema de Gestión de Experimentos de la UAX");
+        }
     }
 
     private void crearNuevoExperimento() {
         DialogoCrearExperimento dialogo = new DialogoCrearExperimento(this);
         dialogo.setVisible(true);
-        // Supongamos que DialogoCrearExperimento maneja la creación y configuración del experimento
-        // y se asigna a experimentoActual cuando se guarda exitosamente
     }
 
     private void abrirExperimento() {
@@ -63,7 +74,7 @@ public class VentanaPrincipal extends JFrame {
             File seleccionado = fileChooser.getSelectedFile();
             try {
                 experimentoActual = AdministradorDatos.abrirExperimento(seleccionado);
-                // Aquí deberías actualizar la UI con los datos del experimento cargado
+                actualizarUI();
             } catch (IOException | ClassNotFoundException ex) {
                 JOptionPane.showMessageDialog(this, "Error al abrir el archivo", "Error", JOptionPane.ERROR_MESSAGE);
             }
