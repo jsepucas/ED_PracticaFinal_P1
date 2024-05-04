@@ -42,12 +42,14 @@ public class VentanaPrincipal extends JFrame {
         menuArchivo.add(itemNuevo);
         menuArchivo.add(itemAbrir);
         menuArchivo.add(itemGuardar);
+        menuArchivo.add(itemEditar);
+        menuArchivo.add(itemEliminar);
         menuArchivo.add(new JSeparator());
         menuArchivo.add(itemSalir);
         menuBar.add(menuArchivo);
-        menuArchivo.add(itemEditar);
-        menuArchivo.add(itemEliminar);
         setJMenuBar(menuBar);
+
+
 
         // Panel de visualización
         JPanel panelCentral = new JPanel();
@@ -55,6 +57,11 @@ public class VentanaPrincipal extends JFrame {
         labelBienvenida = new JLabel("Bienvenido al Sistema de Gestión de Experimentos de la UAX", SwingConstants.CENTER);
         panelCentral.add(labelBienvenida, BorderLayout.CENTER);
         add(panelCentral);
+
+
+
+
+
     }
 
     private void eliminarExperimento() {
@@ -79,7 +86,6 @@ public class VentanaPrincipal extends JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "No hay experimento seleccionado para editar", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
     }
 
     public void setExperimentoActual(Experimento experimento) {
