@@ -29,4 +29,27 @@ public class Experimento {
         this.bacteria = bacteria;
     }
 
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
+    public int getNumeroInicialBacterias() {
+        return numeroInicialBacterias;
+    }
+
+  
+
+
 
