@@ -49,7 +49,36 @@ public class Experimento {
         return numeroInicialBacterias;
     }
 
-  
+    public void setNumeroInicialBacterias(int numeroInicialBacterias) {
+        this.numeroInicialBacterias = numeroInicialBacterias;
+    }
+
+    public double getTemperatura() {
+        return temperatura;
+    }
+
+    public void setTemperatura(double temperatura) {
+        this.temperatura = temperatura;
+    }
+
+    public String getCondicionLuz() {
+        return condicionLuz;
+    }
+
+    public void setCondicionLuz(String condicionLuz) {
+        this.condicionLuz = condicionLuz;
+    }
+
+    public double getDosisComida() {
+        return dosisComida;
+    }
+
+    public void setDosisComida(double dosisComida) {
+        this.dosisComida = dosisComida;
+    }
+}
+
+
 
 
 
