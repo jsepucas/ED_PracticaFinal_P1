@@ -41,7 +41,7 @@ public class VentanaPrincipal extends JFrame {
         }
 
         // Ítems de menú
-        JMenuItem itemArchivo = new JMenuItem("Archivo");
+
         JMenuItem itemNuevo = new JMenuItem("Nuevo Experimento");
         JMenuItem itemAbrir = new JMenuItem("Abrir Experimento");
         JMenuItem itemGuardar = new JMenuItem("Guardar");
@@ -58,7 +58,7 @@ public class VentanaPrincipal extends JFrame {
         itemEliminar.addActionListener(e -> eliminarExperimento());
         itemVerDetallesPoblacion.addActionListener(e -> verDetallesPoblacion()); // Acción para el nuevo ítem de menú
 
-        menuIcono.add(itemArchivo);
+
         menuIcono.add(itemNuevo);
         menuIcono.add(itemAbrir);
         menuIcono.add(itemGuardar);
