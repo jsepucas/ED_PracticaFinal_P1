@@ -87,7 +87,7 @@ public class VentanaPrincipal extends JFrame {
 
         JPanel panelCentral =  new JPanel(new GridLayout(7, 2));
 
-        ImagePanel panelConImagen = new ImagePanel("/images/fondo4.jpg");
+        ImagePanel panelConImagen = new ImagePanel("/images/fondo01.gif");
         panelConImagen.setLayout(new GridLayout(7, 2)); // Asegúrate de establecer el mismo layout que panelCentral
         panelCentral = panelConImagen;
 
