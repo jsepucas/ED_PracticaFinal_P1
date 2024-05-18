@@ -1,6 +1,7 @@
 package B_Gestion_Datos;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +10,7 @@ public class Experimento {
     private String bacteria;
     private Date fechaInicio;
     private Date fechaFin;
+    private int duracionDias; // Nuevo campo para la duración variable de los experimentos
     private int numeroInicialBacterias;
     private double temperatura;
     private String condicionLuz;
@@ -41,14 +43,20 @@ public class Experimento {
 
     public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
+        calcularFechaFin();
     }
 
     public Date getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(Date fechaFin) {
-        this.fechaFin = fechaFin;
+    public int getDuracionDias() {
+        return duracionDias;
+    }
+
+    public void setDuracionDias(int duracionDias) {
+        this.duracionDias = duracionDias;
+        calcularFechaFin();
     }
 
     public int getNumeroInicialBacterias() {
@@ -90,4 +98,17 @@ public class Experimento {
     public void addPoblacion(PoblacionBacterias poblacion) {
         poblaciones.add(poblacion);
     }
+
+    // Método para calcular la fecha de fin basada en la fecha de inicio y la duración
+    private void calcularFechaFin() {
+        if (this.fechaInicio != null && this.duracionDias > 0) {
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(this.fechaInicio);
+            cal.add(Calendar.DAY_OF_MONTH, this.duracionDias);
+            this.fechaFin = cal.getTime();
+        } else {
+            this.fechaFin = null;
+        }
+    }
 }
+
