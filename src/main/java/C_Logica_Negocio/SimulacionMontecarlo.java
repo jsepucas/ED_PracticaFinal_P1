@@ -26,3 +26,12 @@ public class SimulacionMontecarlo {
             }
         }
     }
+
+    private void inicializarBacterias() {
+        int centro = TAMANO_PLATO / 2;
+        for (int i = centro - 2; i <= centro + 1; i++) {
+            for (int j = centro - 2; j <= centro + 1; j++) {
+                bacterias.add(new Bacteria(i, j));
+            }
+        }
+    }
