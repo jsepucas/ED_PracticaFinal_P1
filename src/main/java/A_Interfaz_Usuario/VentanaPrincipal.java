@@ -88,12 +88,14 @@ public class VentanaPrincipal extends JFrame {
         JPanel panelCentral =  new JPanel(new GridLayout(7, 2));
 
         ImagePanel panelConImagen = new ImagePanel("/images/fondo01.gif");
-        panelConImagen.setLayout(new GridLayout(7, 2)); // Asegúrate de establecer el mismo layout que panelCentral
+        panelConImagen.setLayout(new GridLayout(7, 2));
         panelCentral = panelConImagen;
 
 
-
         labelBienvenida = new JLabel("Bienvenido al Sistema de Gestión de Experimentos de la UAX", SwingConstants.CENTER);
+        //Letra mas grande
+        labelBienvenida.setFont(new Font("Arial", Font.BOLD, 30));
+
         panelCentral.add(labelBienvenida);
         labelNombre = new JLabel();
         panelCentral.add(labelNombre);
