@@ -1,4 +1,5 @@
 package C_Logica_Negocio;
 
-public class SimulacionMontecarlo {
-}
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
