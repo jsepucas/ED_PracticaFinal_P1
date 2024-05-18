@@ -234,7 +234,7 @@ public class VentanaPrincipal extends JFrame {
             labelNumeroInicialBacterias.setText("Número inicial de bacterias: " + experimentoActual.getNumeroInicialBacterias());
             labelTemperatura.setText("Temperatura: " + experimentoActual.getTemperatura());
             labelCondicionLuz.setText("Condición de luz: " + experimentoActual.getCondicionLuz());
-            labelDosisComida.setText("Dosis de comida: " + experimentoActual.getDosisComida());
+            labelDosisComida.setText("Dosis de comida (µg): " + experimentoActual.getDosisComida());
             iniciarSimulacion(); // Iniciar la simulación cuando se carga un experimento
         } else {
             labelBienvenida.setText("Bienvenido al Sistema de Gestión de Experimentos de la UAX");
