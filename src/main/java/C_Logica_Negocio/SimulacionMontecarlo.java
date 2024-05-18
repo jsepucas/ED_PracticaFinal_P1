@@ -35,3 +35,22 @@ public class SimulacionMontecarlo {
             }
         }
     }
+
+
+    public void simularDia() {
+        List<Bacteria> nuevasBacterias = new ArrayList<>();
+        for (Bacteria bacteria : bacterias) {
+            int x = bacteria.getX();
+            int y = bacteria.getY();
+            if (comida[x][y] >= 100) {
+                comida[x][y] -= 20;
+                moverOBacteria(nuevasBacterias, x, y, 20, 100);
+            } else if (comida[x][y] >= 10) {
+                comida[x][y] -= 10;
+                moverOBacteria(nuevasBacterias, x, y, 10, 99);
+            } else {
+                moverOBacteria(nuevasBacterias, x, y, 0, 59);
+            }
+        }
+        bacterias.addAll(nuevasBacterias);
+    }
