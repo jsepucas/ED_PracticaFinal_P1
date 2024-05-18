@@ -7,4 +7,4 @@ public class Principal {
         VentanaInicioSesion ventanaInicioSesion = new VentanaInicioSesion();
         ventanaInicioSesion.setVisible(true);
     }
-}
+}   
