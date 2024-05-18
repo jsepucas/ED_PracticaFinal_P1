@@ -61,7 +61,6 @@ public class DialogoCrearExperimento extends JDialog {
             experimento.setNombre(nombreField.getText());
             experimento.setBacteria(bacteriaField.getText());
             experimento.setFechaInicio(new SimpleDateFormat("dd/MM/yyyy").parse(fechaInicioField.getText()));
-            experimento.setFechaFin(new SimpleDateFormat("dd/MM/yyyy").parse(fechaFinField.getText()));
             experimento.setNumeroInicialBacterias(Integer.parseInt(numeroInicialBacteriasField.getText()));
             experimento.setTemperatura(Double.parseDouble(temperaturaField.getText()));
             experimento.setCondicionLuz(condicionLuzField.getText());
