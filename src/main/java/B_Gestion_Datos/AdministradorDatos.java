@@ -1,6 +1,5 @@
 package B_Gestion_Datos;
 
-import B_Gestion_Datos.Experimento;
 import java.io.*;
 
 public class AdministradorDatos {
