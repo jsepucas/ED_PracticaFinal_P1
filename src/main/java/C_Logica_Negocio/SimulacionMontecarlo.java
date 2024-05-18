@@ -18,3 +18,11 @@ public class SimulacionMontecarlo {
         inicializarPlato(comidaInicial);
         inicializarBacterias();
     }
+
+    private void inicializarPlato(int comidaInicial) {
+        for (int i = 0; i < TAMANO_PLATO; i++) {
+            for (int j = 0; j < TAMANO_PLATO; j++) {
+                comida[i][j] = comidaInicial;
+            }
+        }
+    }
