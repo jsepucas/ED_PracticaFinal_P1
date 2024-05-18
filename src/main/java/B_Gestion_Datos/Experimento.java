@@ -50,6 +50,11 @@ public class Experimento {
         return fechaFin;
     }
 
+    // Eliminado el setter para fechaFin, ya que se calculará automáticamente
+    // public void setFechaFin(Date fechaFin) {
+    //     this.fechaFin = fechaFin;
+    // }
+
     public int getDuracionDias() {
         return duracionDias;
     }
@@ -111,4 +116,3 @@ public class Experimento {
         }
     }
 }
-
