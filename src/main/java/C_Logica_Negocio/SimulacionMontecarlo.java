@@ -54,3 +54,27 @@ public class SimulacionMontecarlo {
         }
         bacterias.addAll(nuevasBacterias);
     }
+
+    private void moverOBacteria(List<Bacteria> nuevasBacterias, int x, int y, int comidaConsumida, int probabilidadMovimiento) {
+        int destino = random.nextInt(100);
+        if (destino < 3 || (comidaConsumida == 0 && destino < 20)) {
+            return;
+        } else if (destino < 60 || (comidaConsumida == 0 && destino < 60)) {
+            nuevasBacterias.add(new Bacteria(x, y));
+        } else {
+            moverBacteria(nuevasBacterias, x, y);
+        }
+    }
+
+    private void moverBacteria(List<Bacteria> nuevasBacterias, int x, int y) {
+        int[] dx = {-1, 0, 1, 0};
+        int[] dy = {0, 1, 0, -1};
+        int direccion = random.nextInt(4);
+        int nuevoX = x + dx[direccion];
+        int nuevoY = y + dy[direccion];
+        if (nuevoX >= 0 && nuevoX < TAMANO_PLATO && nuevoY >= 0 && nuevoY < TAMANO_PLATO) {
+            nuevasBacterias.add(new Bacteria(nuevoX, nuevoY));
+        } else {
+            nuevasBacterias.add(new Bacteria(x, y));
+        }
+    }
