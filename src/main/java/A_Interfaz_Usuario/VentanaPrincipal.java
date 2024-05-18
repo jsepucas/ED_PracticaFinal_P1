@@ -42,7 +42,7 @@ public class VentanaPrincipal extends JFrame {
         }
 
         // Ítems de menú
-        JMenuItem itemNuevo = new JMenuItem("Nuevo Experimento");
+        JMenuItem itemNuevo = new JMenuItem("Nuevo Experimento : = ) ");
         JMenuItem itemAbrir = new JMenuItem("Abrir Experimento");
         JMenuItem itemGuardar = new JMenuItem("Guardar");
         JMenuItem itemSalir = new JMenuItem("Salir");
