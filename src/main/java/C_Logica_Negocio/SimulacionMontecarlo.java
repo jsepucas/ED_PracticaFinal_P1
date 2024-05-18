@@ -78,3 +78,30 @@ public class SimulacionMontecarlo {
             nuevasBacterias.add(new Bacteria(x, y));
         }
     }
+
+    public int[][] getComida() {
+        return comida;
+    }
+
+    public List<Bacteria> getBacterias() {
+        return bacterias;
+    }
+
+    public static class Bacteria {
+        private int x;
+        private int y;
+
+        public Bacteria(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        public int getX() {
+            return x;
+        }
+
+        public int getY() {
+            return y;
+        }
+    }
+}
