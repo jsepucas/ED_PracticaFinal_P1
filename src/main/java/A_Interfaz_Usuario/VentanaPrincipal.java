@@ -1,6 +1,5 @@
 package A_Interfaz_Usuario;
 
-import A_Interfaz_Usuario.VentanaDetallesPoblacion;
 import B_Gestion_Datos.AdministradorDatos;
 import B_Gestion_Datos.Experimento;
 import B_Gestion_Datos.PoblacionBacterias;
@@ -8,7 +7,8 @@ import E_App.ImagePanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 
 public class VentanaPrincipal extends JFrame {
@@ -92,7 +92,7 @@ public class VentanaPrincipal extends JFrame {
         panelCentral = panelConImagen;
 
 
-        labelBienvenida = new JLabel("Bienvenido al Sistema de Gestión de Experimentos de la UAX : )", SwingConstants.CENTER);
+        labelBienvenida = new JLabel("Bienvenido al Sistema de Gestión de Experimentos de la UAX", SwingConstants.CENTER);
         //Letra mas grande
         labelBienvenida.setFont(new Font("Arial", Font.BOLD, 30));
 
