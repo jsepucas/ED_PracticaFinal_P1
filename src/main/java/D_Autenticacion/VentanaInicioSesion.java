@@ -1,5 +1,7 @@
 package D_Autenticacion;
 
+import A_Interfaz_Usuario.VentanaPrincipal;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.net.URL;
-import A_Interfaz_Usuario.VentanaPrincipal;
 
 public class VentanaInicioSesion extends JFrame implements ActionListener {
     private JTextField textFieldUsuario;
@@ -39,7 +40,7 @@ public class VentanaInicioSesion extends JFrame implements ActionListener {
         if (imagenDerechaUrl != null) {
             ImageIcon imagenDerecha = new ImageIcon(imagenDerechaUrl);
             Image imagen = imagenDerecha.getImage();
-            Image imagenRedimensionada = imagen.getScaledInstance(290, 200, java.awt.Image.SCALE_SMOOTH); // Ajusta el tamaño de la imagen
+            Image imagenRedimensionada = imagen.getScaledInstance(290, 200, Image.SCALE_SMOOTH); // Ajusta el tamaño de la imagen
             imagenDerecha = new ImageIcon(imagenRedimensionada);
             JLabel labelImagenDerecha = new JLabel(imagenDerecha);
             this.add(labelImagenDerecha, BorderLayout.PAGE_START);
@@ -59,7 +60,7 @@ public class VentanaInicioSesion extends JFrame implements ActionListener {
 
             // Ajusta el tamaño de la imagen del usuario
             Image imagen = imagenUsuario.getImage();
-            Image imagenRedimensionada = imagen.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
+            Image imagenRedimensionada = imagen.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
             imagenUsuario = new ImageIcon(imagenRedimensionada);
 
             // Crea un JLabel para la imagen del usuario
