@@ -92,7 +92,7 @@ public class VentanaPrincipal extends JFrame {
         panelCentral = panelConImagen;
 
 
-        labelBienvenida = new JLabel("Bienvenido al Sistema de Gestión de Experimentos de la UAX", SwingConstants.CENTER);
+        labelBienvenida = new JLabel("Bienvenido al Sistema de Gestión de Experimentos de la UAX : )", SwingConstants.CENTER);
         //Letra mas grande
         labelBienvenida.setFont(new Font("Arial", Font.BOLD, 30));
 
